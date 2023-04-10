@@ -6,21 +6,21 @@ import time
 list_res = []
 
 def accept_cookies(browser):
-    wait = WebDriverWait(browser, 2)
+    wait = WebDriverWait(browser, 5)
     cookie_accept = wait.until(EC.presence_of_element_located(
         (By.XPATH, "//button[@class='cookie__bar__buttons__button cookie__bar__buttons__button--accept']")))
     cookie_accept.click()
 
 
 def decline_cookies(browser):
-    wait = WebDriverWait(browser, 2)
+    wait = WebDriverWait(browser, 5)
     cookie_decline = wait.until(EC.presence_of_element_located(
         (By.XPATH, "//button[@class='cookie__bar__buttons__button cookie__bar__buttons__button--decline']")))
     cookie_decline.click()
 
 
 def login(browser, name, email, password):
-    wait = WebDriverWait(browser, 2)
+    wait = WebDriverWait(browser, 5)
     sign_in_nav = browser.find_element(By.XPATH, "//a[@href='#/login']")
     sign_in_nav.click()
     email_input = wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@placeholder='Email']")))
@@ -35,7 +35,7 @@ def login(browser, name, email, password):
 
 
 def logout(browser):
-    wait = WebDriverWait(browser, 2)
+    wait = WebDriverWait(browser, 5)
     sign_out_but = wait.until(EC.presence_of_element_located((By.XPATH, "//a[@active-class='active']")))
     sign_out_but.click()
     sign_in_nav = wait.until(EC.presence_of_element_located((By.XPATH, "//a[@href='#/login']")))
@@ -43,7 +43,7 @@ def logout(browser):
 
 
 def registration(browser, username, email, password):
-    wait = WebDriverWait(browser, 2)
+    wait = WebDriverWait(browser, 5)
     register_but = browser.find_element(By.XPATH, "//a[@href='#/register']")
     register_but.click()
     username_input = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@placeholder='Username']")))
@@ -63,7 +63,7 @@ def registration(browser, username, email, password):
 
 
 def create_new_post(browser, title, topic, article, tags):
-    wait = WebDriverWait(browser, 2)
+    wait = WebDriverWait(browser, 5)
     new_article_nav = wait.until(EC.presence_of_element_located((By.XPATH, "//a[@href='#/editor']")))
     new_article_nav.click()
     text_area = wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//input[@type='text']")))
@@ -102,7 +102,7 @@ def create_new_post(browser, title, topic, article, tags):
 
 
 def modify_post(browser, title, new_title, new_topic, new_article):
-    wait = WebDriverWait(browser, 2)
+    wait = WebDriverWait(browser, 5)
     article_to_modify = wait.until(EC.visibility_of_element_located((By.XPATH, f"//a[@href='#/articles/{title}']")))
     article_to_modify.click()
     modify_but = wait.until(
@@ -133,7 +133,7 @@ def modify_post(browser, title, new_title, new_topic, new_article):
 
 
 def delete_post(browser, title):
-    wait = WebDriverWait(browser, 2)
+    wait = WebDriverWait(browser, 5)
     article_to_del = wait.until(EC.presence_of_element_located((By.XPATH, f"//a[@href='#/articles/{title}']")))
     article_to_del.click()
     article_url = browser.current_url
@@ -144,13 +144,13 @@ def delete_post(browser, title):
 
 
 def profile_page(browser, name):
-    wait = WebDriverWait(browser, 2)
+    wait = WebDriverWait(browser, 5)
     profile_nav = wait.until(EC.presence_of_element_located((By.XPATH, f"//a[@href='#/@{name}/']")))
     profile_nav.click()
 
 
 def list_data(browser, attribute):
-    wait = WebDriverWait(browser, 2)
+    wait = WebDriverWait(browser, 5)
     listed_items = wait.until(EC.presence_of_all_elements_located(
         (By.XPATH, f'//div[@class="article-preview"]/a[@class="preview-link"]/{attribute}')))
     global list_res
@@ -160,7 +160,7 @@ def list_data(browser, attribute):
 
 
 def next_page(browser):
-    wait = WebDriverWait(browser, 2)
+    wait = WebDriverWait(browser, 5)
     active_page = wait.until(
         EC.presence_of_element_located((By.XPATH, '//ul[@class="pagination"]/li[@class="page-item active"]'))).text
     pages = wait.until(EC.presence_of_all_elements_located(
@@ -171,7 +171,7 @@ def next_page(browser):
 
 
 def all_pages(browser):
-    wait = WebDriverWait(browser, 2)
+    wait = WebDriverWait(browser, 5)
     pages = wait.until(EC.presence_of_all_elements_located(
         (By.XPATH, '//a[@class="page-link"]')))
     for page in pages:

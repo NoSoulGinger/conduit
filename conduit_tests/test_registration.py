@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
 
-class TestLogin(object):
+class TestRegistration(object):
     def setup_method(self):
         service = Service(executable_path=ChromeDriverManager().install())
         options = Options()
