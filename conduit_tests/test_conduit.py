@@ -62,7 +62,7 @@ class TestConduit(object):
 
     def test_import_posts_from_file(self):
         login(self.browser, user["name"], user["email"], user["password"])
-        with open('post_data.txt', 'r', newline='') as file:
+        with open('conduit_tests/post_data.txt', 'r', newline='') as file:
             csv_file = csv.reader(file, delimiter=',')
             for row in csv_file:
                 create_new_post(self.browser, row[0], row[1], row[2], [row[3],row[4], row[5]])
@@ -76,6 +76,6 @@ class TestConduit(object):
     def test_save_data(self):
         login(self.browser, user["name"], user["email"], user["password"])
         list_data(self.browser, "h1")
-        with open(r'export_data.txt', 'w', newline='') as file:
+        with open('conduit_tests/export_data.txt', 'w', newline='') as file:
             for title in list_res:
                 file.write("%s\n" % title)
