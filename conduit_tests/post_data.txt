@@ -1,0 +1,4 @@
+Cim1,Tema1,Cikk1,Tag1,Tag2,Tag3
+Cim2,Tema2,Cikk2,Tag1,Tag2,Tag3
+Cim3,Tema3,Cikk3,Tag1,Tag2,Tag3
+Cim4,Tema4,Cikk4,Tag1,Tag2,Tag3
