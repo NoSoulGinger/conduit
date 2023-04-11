@@ -1,7 +1,8 @@
 user = {
     "name": "TesztElek",
     "email": "tesztelgetek@gmail.com",
-    "password": "Tesztelek1"
+    "password": "Tesztelek1",
+    "new_name": "Tesztelek_edited"
 }
 
 post = {

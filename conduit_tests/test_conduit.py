@@ -60,6 +60,13 @@ class TestConduit(object):
         modify_post(self.browser, post["title"], post["modified_title"], post["modified_topic"],
                     post["modified_article"])
 
+    def test_modify_username(self):
+        login(self.browser, user["name"], user["email"], user["password"])
+        profile_page(self.browser, user["name"])
+        modify_name(self.browser, user["new_name"])
+        profile_page(self.browser, user["new_name"])
+        modify_name(self.browser, user["name"])
+
     def test_import_posts_from_file(self):
         login(self.browser, user["name"], user["email"], user["password"])
         with open('conduit_tests/post_data.txt', 'r', newline='') as file:
@@ -78,4 +85,3 @@ class TestConduit(object):
         with open('conduit_tests/export_data.txt', 'w', newline='') as file:
             for title in list_res:
                 file.write("%s\n" % title)
-        # assert?

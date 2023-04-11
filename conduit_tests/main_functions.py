@@ -128,15 +128,34 @@ def modify_post(browser, title, new_title, new_topic, new_article):
     assert article_res == new_article
 
 
+def modify_name(browser, new_name):
+    wait = WebDriverWait(browser, 5)
+    edit_profile_but = wait.until(
+        EC.presence_of_element_located((By.XPATH, "//a[@class='btn btn-sm btn-outline-secondary action-btn']")))
+    edit_profile_but.click()
+    profile_name = wait.until(
+        EC.presence_of_element_located((By.XPATH, "//input[@placeholder='Your username']")))
+    profile_name.clear()
+    profile_name.send_keys(new_name)
+    update_but = browser.find_element(By.XPATH, "//button[@class='btn btn-lg btn-primary pull-xs-right']")
+    update_but.click()
+    time.sleep(1)
+    update_success = browser.find_element(By.XPATH, "//button[@class='swal-button swal-button--confirm']")
+    update_success.click()
+    profile = wait.until(EC.presence_of_element_located((By.XPATH, f"//a[@href='#/@{new_name}/']")))
+    assert profile.text == new_name
+
+
 def delete_post(browser, title):
     wait = WebDriverWait(browser, 5)
+    time.sleep(1)
     article_to_del = wait.until(EC.presence_of_element_located((By.XPATH, f"//a[@href='#/articles/{title.lower()}']")))
     article_to_del.click()
     article_url = browser.current_url
     delete_but = wait.until(
         EC.presence_of_element_located((By.XPATH, "//button[@class='btn btn-outline-danger btn-sm']")))
     delete_but.click()
-    time.sleep(2)
+    time.sleep(1)
     assert browser.current_url != article_url
 
 
