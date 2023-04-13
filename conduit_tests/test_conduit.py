@@ -107,7 +107,6 @@ class TestConduit(object):
     def test_save_data(self):
         saved_data = []
         login(self.browser, user["name"], user["email"], user["password"])
-        list_data(self.browser, "h1") # ha minden igaz ez nem szükséges ide
         print(list_res)
         with open('conduit_tests/export_data.txt', 'w', newline='') as file:
             for title in list_res:
