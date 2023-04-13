@@ -108,10 +108,12 @@ class TestConduit(object):
         saved_data = []
         login(self.browser, user["name"], user["email"], user["password"])
         list_data(self.browser, "h1") # ha minden igaz ez nem szükséges ide
+        print(list_res)
         with open('conduit_tests/export_data.txt', 'w', newline='') as file:
             for title in list_res:
                 file.write("%s\n" % title)
         with open('conduit_tests/export_data.txt', 'r', newline='') as f:
             for t in f:
                 saved_data.append(t.replace("\n", ""))
+        print(saved_data)
         assert len(saved_data) == len(list_res)
