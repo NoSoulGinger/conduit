@@ -1,3 +1,4 @@
+# Használt tesztadatok változókba helyezése
 user = {
     "name": "TesztElek",
     "email": "tesztelgetek@gmail.com",

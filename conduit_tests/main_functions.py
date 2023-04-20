@@ -7,6 +7,10 @@ import time
 list_res = []
 
 
+# Főbb funkciók meghatározása
+
+# Cookie elfogadása
+
 def accept_cookies(browser):
     wait = WebDriverWait(browser, 5)
     cookie_accept = wait.until(EC.presence_of_element_located(
@@ -14,6 +18,7 @@ def accept_cookies(browser):
     cookie_accept.click()
 
 
+# Cookie elutasítása
 def decline_cookies(browser):
     wait = WebDriverWait(browser, 5)
     cookie_decline = wait.until(EC.presence_of_element_located(
@@ -21,6 +26,7 @@ def decline_cookies(browser):
     cookie_decline.click()
 
 
+# Bejelentkezés az átadott adatokkal (valid)
 def login(browser, name, email, password):
     wait = WebDriverWait(browser, 5)
     sign_in_nav = browser.find_element(By.XPATH, "//a[@href='#/login']")
@@ -36,6 +42,8 @@ def login(browser, name, email, password):
     assert profile.text == name
 
 
+# Kijelentkezés az oldalról
+
 def logout(browser):
     wait = WebDriverWait(browser, 5)
     sign_out_but = wait.until(EC.presence_of_element_located((By.XPATH, "//a[@active-class='active']")))
@@ -44,6 +52,7 @@ def logout(browser):
     assert sign_in_nav.is_displayed()
 
 
+# Regisztráció az átadott adatokkal (valid)
 def registration(browser, username, email, password):
     wait = WebDriverWait(browser, 5)
     register_but = browser.find_element(By.XPATH, "//a[@href='#/register']")
@@ -64,6 +73,7 @@ def registration(browser, username, email, password):
     assert profile.text == username
 
 
+# Új feed létrehozása az átadott adatokkal
 def create_new_post(browser, title, topic, article, tags):
     wait = WebDriverWait(browser, 5)
     new_article_nav = wait.until(EC.presence_of_element_located((By.XPATH, "//a[@href='#/editor']")))
@@ -95,6 +105,8 @@ def create_new_post(browser, title, topic, article, tags):
     for i in range(len(tags)):
         assert tags[i] == tags_res[i]
 
+
+# Feed módosítása az átadott adatokkal
 
 def modify_post(browser, title, new_title, new_topic, new_article):
     wait = WebDriverWait(browser, 5)
@@ -128,6 +140,7 @@ def modify_post(browser, title, new_title, new_topic, new_article):
     assert article_res == new_article
 
 
+# Bejelentkezett felhasználó nevének módosítása az átadott adatokkal
 def modify_name(browser, new_name):
     wait = WebDriverWait(browser, 5)
     edit_profile_but = wait.until(
@@ -146,6 +159,7 @@ def modify_name(browser, new_name):
     assert profile.text == new_name
 
 
+# Az átadott adat című feed törlése
 def delete_post(browser, title):
     wait = WebDriverWait(browser, 5)
     time.sleep(1)
@@ -159,12 +173,14 @@ def delete_post(browser, title):
     assert browser.current_url != article_url
 
 
+# Bejelentkezett profil adatlap oldalának megnyitása
 def profile_page(browser, name):
     wait = WebDriverWait(browser, 5)
     profile_nav = wait.until(EC.presence_of_element_located((By.XPATH, f"//a[@href='#/@{name}/']")))
     profile_nav.click()
 
 
+# Feedek listázásra az átadott attributumra (h1 -> cím, p -> leírás)
 def list_data(browser, attribute):
     wait = WebDriverWait(browser, 5)
     listed_items = wait.until(EC.presence_of_all_elements_located(
@@ -175,6 +191,7 @@ def list_data(browser, attribute):
     assert len(list_res) > 0
 
 
+# Következő oldalra lapozása
 def next_page(browser):
     wait = WebDriverWait(browser, 5)
     active_page = wait.until(
@@ -186,6 +203,7 @@ def next_page(browser):
             page.click()
 
 
+# Összes oldal bejárása
 def all_pages(browser):
     wait = WebDriverWait(browser, 5)
     pages = wait.until(EC.presence_of_all_elements_located(
