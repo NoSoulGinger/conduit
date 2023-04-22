@@ -169,7 +169,7 @@ def delete_post(browser, title):
     delete_but = wait.until(
         EC.presence_of_element_located((By.XPATH, "//button[@class='btn btn-outline-danger btn-sm']")))
     delete_but.click()
-    time.sleep(1)
+    time.sleep(2)
     assert browser.current_url != article_url
 
 
